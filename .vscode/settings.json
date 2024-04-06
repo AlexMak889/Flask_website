@@ -6,10 +6,10 @@
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "192.168.1.63",
             "port": 3306,
-            "driver": "MySQL",
-            "name": "test",
+            "driver": "MariaDB",
+            "name": "raspberry pi ",
             "database": "temp",
             "username": "Alex",
             "askForPassword": true

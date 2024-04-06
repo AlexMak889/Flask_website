@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 # Store received data
 data_store = []
-
 @app.route('/data', methods=['POST'])
 def receive_data():
     data = request.json
