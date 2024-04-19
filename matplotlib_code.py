@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+""" import matplotlib.pyplot as plt
 import db
 
 def index():
@@ -37,3 +37,4 @@ plt.ylabel('Temperature')
 plt.title(label="Sensor Data", fontsize=16, color="green")
 plt.legend()
 plt.show()
+ """
