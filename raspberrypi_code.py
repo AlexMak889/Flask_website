@@ -4,10 +4,10 @@ import RPi.GPIO as GPIO
 import datetime
 import MySQLdb
 
-hostname = '192.168.1.63'
-username = 'Alex'
-password = 'alexmak889'
-database = 'temp'
+hostname = 'hostname'
+username = 'username'
+password = 'password'
+database = 'database name'
 
 dht_sensor_port = 4
 dht_sensor_type = Adafruit_DHT.DHT11
