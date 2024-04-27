@@ -1,4 +1,4 @@
-""" import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import db
 
 def index():
@@ -22,19 +22,11 @@ def index2():
     return data
 
 data_x = index2()
-print("data_y length")
-print(len(data_x))
 data_y = index()
-print(len(data_y))
-x = list(range(1, len(data_x) + 1))
-y = list(range(1, len(data_y) + 1))
-
 
 plt.plot(data_x, data_y)  
-
 plt.xlabel('Index')
 plt.ylabel('Temperature')
 plt.title(label="Sensor Data", fontsize=16, color="green")
 plt.legend()
 plt.show()
- """

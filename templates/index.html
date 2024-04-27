@@ -5,13 +5,25 @@
 {% endblock %}
 
 {% block body %}
-<h1>Data from Database</h1>
-<a href="http://127.0.0.1:5000//day">link text</a>
-<ul>
-    {% for row in data %}
-        <li>{{ row }}</li>
-        
-    {% endfor %}
-</ul>
-</div>
+<button class="go-button">
+    <a class="button-text"
+    href="http://127.0.0.1:5000//day">To temprature every day
+    </a>
+</button>
+
+<button class="go-button">
+    <a class="button-text"
+    href="http://127.0.0.1:5000//yesterday">To temprature yesterday
+    </a>                  
+</button>
+
+<button class="go-button">
+    <a class="button-text"
+    href="http://127.0.0.1:5000//all_data">To all the data
+    </a>
+</button>
+
+<p class="index-main">
+    hello 
+</p>
 {% endblock %}

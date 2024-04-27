@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all_data.css')}}">
+<title>all data</title>
+{% endblock %}
+
+{% block body %}
+<button class="go-button">
+    <a class="home-button-text"
+    href="http://127.0.0.1:5000">Home
+    </a>
+</button>
+<div class="search-bar-top">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <input type="text" placeholder="Search..">
+</div>
+<h1>Data from Database</h1>
+
+<ul>
+    {% for row in data %}
+        <li>{{ row }}</li>
+        
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

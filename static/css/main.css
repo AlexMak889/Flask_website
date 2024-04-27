@@ -1,0 +1,43 @@
+.go-button {
+    background-color: rgb(71, 71, 71);
+    color: rgb(0, 0, 0)
+    border: none;
+
+    font-size: medium; 
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-left: 20px;
+    margin-bottom:10px;
+    margin-top:10px;    
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-right:10;
+    padding-left:10;
+    transition: opacity 0.15s;
+    transition: box-shadow 0.15
+}
+
+.go-button:hover {
+    opacity: 0.9;    
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25); 
+
+}
+.go-button:active {
+    opacity: 0.5;
+
+}
+
+.button-text {
+    color: rgb(201, 201, 201);
+    text-decoration: none;
+}
+
+.index-main {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 18px;
+    width: 300px;
+    
+}

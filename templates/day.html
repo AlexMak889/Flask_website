@@ -1,4 +1,4 @@
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block head %}
 <h1>hello</h1>
@@ -6,8 +6,30 @@
 
 {% block body %}
 <a href="http://127.0.0.1:5000">link text</a>
-{% endblock %} -->
-<!DOCTYPE html> 
+<canvas id="lines" with= "900" height="400"></canvas>
+<script>
+    var ctx = document.getElementById("lines").getContext("2d");
+    var lineChart = new Chaet(ctx, {
+        type: "line",
+        data: {
+            labels:  {{ data_x │ safe }},
+            datasets: [
+                {
+                    labels: "data  ",
+                    data: {{ data_x │ safe }},
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.1
+                }
+            ]
+        },
+        options: {
+            responsive: false
+        }
+    });
+</script>
+{% endblock %}
+<!-- <!DOCTYPE html> 
 <html lang="en"> 
   
 <head> 
@@ -19,4 +41,4 @@
     <img src="{{ url_for('static', filename='images/plot.png') }}"> 
 </body> 
   
-</html>
+</html> -->
