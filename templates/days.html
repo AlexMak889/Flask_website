@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% endblock %}
+
+{% block body %}
+<div class="topnav">
+    <a href="http://127.0.0.1:5000">Home</a>
+    <a class="active" href="http://127.0.0.1:5000//days">Days</a>
+    <a href="http://127.0.0.1:5000//yesterday">Yesterday</a>
+    <a href="http://127.0.0.1:5000//all_data">All data</a>
+
+</div>
+<canvas id="lineChart" width="900" height="400"></canvas>
+<script>
+    var data_x = {{ data_x | tojson }};
+    var data_y = {{ data_y | tojson }};
+
+    var ctx = document.getElementById("lineChart").getContext("2d");
+    var lineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: data_x,
+            datasets: [
+                {
+                    label: "Data",
+                    data: data_y,
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.2
+                }
+            ]
+        },
+        options: {
+            responsive: false
+        }
+    });
+</script>
+{% endblock %}

@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, url_for, redirect, flash
+from flask_wtf import FlaskForm
 import db
 from datetime import timedelta
 import io
@@ -6,39 +7,32 @@ import random
 import os
 import numpy as np
 import mariadb
-""" from matplotlib.figure import Figure
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-from matplotlib.backends.backend_svg import FigureCanvasSVG
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt """
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, PasswordField, BooleanField
+from wtforms.validators import DataRequired, equal_to, length
+from wtforms.widgets import TextArea
 
-""" def graph(num_x_points=50):
-    #Renders the plot on the fly.
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    x_points = range(num_x_points)
-    axis.plot(x_points, [random.randint(1, 30) for x in x_points])
 
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return plt
- """
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'alexmak889'
 
+#used for search page
+class SearchForm(FlaskForm):
+    searched = StringField("searched", validators=[DataRequired()])
+    submit = SubmitField("submit")
+    
+#main page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+#displays all the data
 @app.route('/all_data', methods=['get'])
 def data():
     conn = db.conn
     cur = conn.cursor()
     cur.execute("SELECT * FROM sensor_data")
     data = cur.fetchall()
-    #cur.close()
-    #conn.close()
     processed_data = []
     for row in data:
         formatted_row = list(row)
@@ -47,7 +41,55 @@ def data():
 
     return render_template('all_data.html', data=processed_data)
 
-@app.route('/day', methods=['GET'])
+#search page 
+@app.context_processor
+def base():
+    if request.method == 'GET':
+        form = SearchForm()
+    else:
+        form = None
+    return dict(form=form)
+@app.route('/search', methods=["POST"])
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+        post_searched = form.searched.data
+        
+        return render_template("search.html", form=form, searched=post_searched)
+    
+
+#temprature every day att 12.00
+@app.route('/days', methods=["GET"])
+def day_data():
+    conn = db.conn
+    cur = conn.cursor()
+    cur.execute("SELECT temp_date, temp FROM sensor_data WHERE temp_date BETWEEN '2024-01-01' AND '2024-12-31' AND temp_time BETWEEN '12:00:00' AND '12:10:00'")
+    data = cur.fetchall()
+    cur.close()
+    # conn.close()  # Consider uncommenting this line to close the connection
+    data_x = [item[0] for item in data]
+    data_y = [item[1] for item in data]
+    return render_template("days.html", data_x=data_x, data_y=data_y)
+
+@app.route('/yesterday', methods=["GET"])
+def yesterday_data():
+    conn = db.conn
+    cur = conn.cursor()
+    cur.execute("SELECT DATE_FORMAT(temp_time, '%Y-%m-%d %H:00:00') AS hour_time, temp FROM sensor_data WHERE temp_time BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59' GROUP BY hour_time")
+    data = cur.fetchall()
+    cur.close()
+    # conn.close()  # Consider uncommenting this line to close the connection
+    data2_x = [item[0] for item in data]
+    data2_y = [item[1] for item in data]
+    return render_template("yesterday.html", data2_x=data2_x, data2_y=data2_y)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+""" @app.route('/day', methods=['GET'])
 def index2():
     try:
         conn = db.conn
@@ -58,9 +100,7 @@ def index2():
 
         cur.execute("SELECT temp_date FROM sensor_data WHERE temp_date BETWEEN '2024-01-01' AND '2024-12-31' AND temp_time BETWEEN '12:00:00' AND '12:10:00'")
         data_y = [item[0] for item in cur.fetchall()]
-
-        cur.close()  # Close the cursor
-        # Don't close the connection if you're using it elsewhere in your application
+        
 
         return render_template('day.html', data_x=data_x, data_y=data_y)
     except mariadb.Error as e:
@@ -69,15 +109,4 @@ def index2():
         return "Database error occurred"
 if __name__ == '__main__':
     import webbrowser
-
-    webbrowser.open("http://127.0.0.1:5000/")
-    app.run(debug=True)
-
-    
-"""     plt.plot(data_x, data_y)  
-     plt.xlabel('Index')
-     plt.ylabel('Temperature')
-     plt.title(label="Sensor Data", fontsize=16, color="green")
-      plt.legend()
-      plt.show() """
-    
+ """

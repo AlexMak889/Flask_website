@@ -1,29 +1,19 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Temp data</title>
 {% endblock %}
-
 {% block body %}
-<button class="go-button">
-    <a class="button-text"
-    href="http://127.0.0.1:5000//day">To temprature every day
-    </a>
-</button>
+<div class="topnav">
+    <a class="active" href="http://127.0.0.1:5000">Home</a>
+    <a href="http://127.0.0.1:5000//days">Days</a>
+    <a href="http://127.0.0.1:5000//yesterday">Yesterday</a>
+    <a href="http://127.0.0.1:5000//all_data">All data</a>
 
-<button class="go-button">
-    <a class="button-text"
-    href="http://127.0.0.1:5000//yesterday">To temprature yesterday
-    </a>                  
-</button>
-
-<button class="go-button">
-    <a class="button-text"
-    href="http://127.0.0.1:5000//all_data">To all the data
-    </a>
-</button>
-
-<p class="index-main">
-    hello 
-</p>
+</div>
+    
+<div style="padding-left:16px">
+    <h2>Welcome</h2>
+    <p></p>
+</div>
+    
 {% endblock %}

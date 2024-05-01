@@ -2,28 +2,35 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/all_data.css')}}">
-<title>all data</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 {% endblock %}
 
 {% block body %}
-<button class="go-button">
-    <a class="home-button-text"
-    href="http://127.0.0.1:5000">Home
-    </a>
-</button>
-<div class="search-bar-top">
-    <a class="active" href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <input type="text" placeholder="Search..">
-</div>
-<h1>Data from Database</h1>
+<div class="topnav">
+    <a href="http://127.0.0.1:5000">Home</a>
+    <a href="http://127.0.0.1:5000//days">Days</a>
+    <a href="http://127.0.0.1:5000//yesterday">Yesterday</a>
+    <a class="active" href="http://127.0.0.1:5000//all_data">All data</a>
 
-<ul>
-    {% for row in data %}
-        <li>{{ row }}</li>
-        
-    {% endfor %}
-</ul>
 </div>
+<form method="POST" action="{{ url_for('search')}}">
+    {{ form.hidden_tag() }}
+    <div class="search">
+        <span class="search-icon material-symbols-outlined">search</span>
+        <input class="search-input" type="search" placeholder="search" name="searched">
+
+    </div>
+</form>
+
+
+<h1>Data from Database</h1>
+<button class="all-data-button">
+    <ul>
+        {% for row in data %}
+            <li class="all-data">{{ row }}</li>
+            
+        {% endfor %}
+    </ul>
+</button>
+
 {% endblock %}
