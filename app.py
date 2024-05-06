@@ -21,12 +21,6 @@ app.config['SECRET_KEY'] = 'alexmak889'
 def kelvin_to_celsius_fahrenheit(kelvin):
     celsius = kelvin - 273.15
     return celsius
-
-#used for search page
-class SearchForm(FlaskForm):
-    searched = StringField("searched", validators=[DataRequired()])
-    submit = SubmitField("submit")
-    
 #main page
 @app.route('/')
 def index():
@@ -215,23 +209,6 @@ def data():
         processed_data.append(tuple(formatted_row))
 
     return render_template('all_data.html', data=processed_data)
-
-#search page 
-@app.context_processor
-def base():
-    if request.method == 'GET':
-        form = SearchForm()
-    else:
-        form = None
-    return dict(form=form)
-@app.route('/search', methods=["POST"])
-def search():
-    form = SearchForm()
-    if form.validate_on_submit():
-        post_searched = form.searched.data
-        
-        return render_template("search.html", form=form, searched=post_searched)
-    
 
 #temprature every day att 12.00
 @app.route('/days', methods=["GET"])

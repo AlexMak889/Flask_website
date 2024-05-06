@@ -1,0 +1,25 @@
+
+
+This is my Flask website.
+
+Here, I've integrated a DHT11 temperature sensor with a Raspberry Pi 2B and displayd the data on a flask website.
+
+Utilizing a program i made running on the Raspberry Pi, I capture temperature, humidity, time, and date every half hour. This data is then stored in my MariaDB database.
+
+Once collected, I use the chart.js library to visually represent the data. Moreover, I've added OpenWeather, an external API, granting access to outher weather information such as sunrise and sunset times, along with current weather conditions, among other things.
+
+To replicate this setup, you'll need to create a Python file named "db.py" to establish your connection to the database. Exampel:
+
+import mariadb
+
+conn = mariadb.connect(
+        user="username",
+        password="password",
+        host="raspberry pi ip adress",
+        port=3306,
+        database="database name"
+    )
+
+
+ Additionally, create a file named "api_key" where you put the API key obtained from the OpenWeather website: https://openweathermap.org/.
+ You first need to logg in then locate your name you chose in the upp right corner. Then click "my API keys". There you have your API key.
