@@ -1,5 +1,7 @@
 body {
     background-color: 	#62a1c7;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .go-button {
@@ -15,7 +17,7 @@ body {
     margin-left: 20px;
     margin-bottom:10px;
     margin-top:10px;    
-    padding-top:15px;
+    padding-top:5px;
     padding-bottom:15px;
     padding-right:10;
     padding-left:10;
@@ -83,4 +85,81 @@ body {
 .topnav a.active {
     background-color: #15719f;
     color: white;
+}
+
+.suntime-button {
+    border: none;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    padding-right: 40px;
+}
+
+.suntime {
+    align-items: center;
+    padding: 14px 16px;
+    font-size: 10px;
+
+}
+
+.material-symbols-outlined-sun {
+    color: rgb(255, 230, 0);
+}   
+
+.temp-button {
+    border: none;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    padding-right: 40px;
+    margin-right: 270px;
+
+}
+
+.temp-button-text {
+    align-items: center;
+    font-size: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 40px;
+    size: 80%;
+    flex: 1;
+}
+
+.feel-button {
+    border: none;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    padding-right: 40px;
+    margin-right: 250px;
+    margin-top: 200;
+}
+
+.status {
+    border: none;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    padding-right: 40px;
+    margin-top: 200;    
+}
+
+.temp-button,
+.feel-button,
+.suntime-button,
+.status {
+    display: inline-block;
+    vertical-align: top; 
+    margin-right: 180px;
+    margin-top: 30px;
+    width: 400px; 
+    height: 200px;
+}
+
+
+.temp-button,
+.feel-button,
+.suntime-button,
+.status {
+    border: none;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+        padding: 20px 40px; 
 }

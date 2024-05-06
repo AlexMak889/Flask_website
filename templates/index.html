@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 {% endblock %}
 {% block body %}
 <div class="topnav">
@@ -13,7 +15,55 @@
     
 <div style="padding-left:16px">
     <h2>Welcome</h2>
-    <p></p>
+    <br>
+    <button class="temp-button">
+        <div class="temp-button-text">
+            <h1>
+                The latest tempratur in Ängelholm is: {{temp_celsius}}.
+            </h1>
+            <h1>
+                tempratur in house is: {{latest_temp}}
+            </h1>
+        </div>
+        
+    </button>
+    <button class="suntime-button">
+        <div class="temp-button-text">
+            <h1>
+                <span class="material-symbols-outlined-sun">
+                <span class="material-symbols-outlined">
+                wb_twilight
+                </span>
+                </span>
+                The sun rises att: {{sunrise_time}}
+            </h1>
+            <h1>
+                <span class="material-symbols-outlined">
+                    nightlight
+                </span>
+                The sun sets att:{{sunset_time}}
+            </h1>
+        </div>  
+    </button>
+    <br>
+    <button class="feel-button">
+        <div class="temp-button-text">
+            <h1>The winds are blowing at {{wind_speed}}m/s</h1>
+            <h1>It feels like {{feels_like_celsius}} degreas celsius outside</h1>
+        </div>
+    </button>
+    <button class="status">
+        <div class="temp-button-text">
+            <h1>It is currently {{description}}
+                <img src="{{ icon_filename }}" alt="Weather Icon">
+
+            </h1>
+        </div>
+        
+
+    </button>
+
+    
 </div>
     
 {% endblock %}

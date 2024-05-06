@@ -5,15 +5,22 @@
 {% endblock %}
 
 {% block body %}
+<div class="topnav">
+    <a href="http://127.0.0.1:5000">Home</a>
+    <a href="http://127.0.0.1:5000//days">Days</a>
+    <a href="http://127.0.0.1:5000//yesterday">Yesterday</a>
+    <a href="http://127.0.0.1:5000//all_data">All data</a>
 
+</div>
 <h2>you search for...</h2>
 
 <p>{{ searched }}</p>
 
 <button class="go-button">
-    <a class="button-text"
-    href="http://127.0.0.1:5000//all_data">Go back
-    </a>
+    <p class="button-text ">
+         <a href="http://127.0.0.1:5000">Home</a>
+    </p>
+   
 </button>
 
 {% endblock %}
